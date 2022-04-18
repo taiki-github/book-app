@@ -1,0 +1,13 @@
+.mt-5{
+    margin-top: 5px;
+}
+
+.backgroundcolor{
+    height: 100vh;
+    background: linear-gradient(to bottom right, beige, white);
+  }
+
+  .mx{
+      margin-top: 50px;
+      margin-left: 50px;
+  }

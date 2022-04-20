@@ -11,7 +11,7 @@
           exact
           @click.stop="drawer = !drawer"
         >
-          <v-list-item-action>
+          <v-list-item-action >
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>

@@ -15,15 +15,8 @@
     <v-row>
       <v-col cols="3">
         <v-btn
-          color="primary"
           @click="signUp"
         >ユーザー登録する</v-btn>
-      </v-col>
-      <v-col cols="3">
-        <v-btn
-          color="secondary"
-          to="./login"
-        >ログインページ</v-btn>
       </v-col>
     </v-row>
   </div>
@@ -46,6 +39,7 @@ export default {
    const auth = getAuth(this.$firebase)
     await  createUserWithEmailAndPassword(auth, this.email, this.password)
     // このような処理は非同期通信をつかわないと上手くいかないことがある
+     this.$router.push(`/auth/login`)
 } catch (error) {
   alert(error);
   

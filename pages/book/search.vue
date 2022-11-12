@@ -1,5 +1,6 @@
 <template>
   <div>
+    
       <v-col cols="6">
         <v-text-field v-model="keyword" label="タイトルで探す" />
         <v-btn  @click="search(keyword)"> 検索 </v-btn>
@@ -35,9 +36,15 @@
               fab dark color="indigo"
               @click="addBookList(index)"
               >
+
                 <v-icon dark> mdi-plus </v-icon>
               </v-btn>
-             
+             <v-btn 
+              @click="makeReport(index)"
+              class="ml-3"
+              >
+              感想文作成
+              </v-btn>
             </v-col>
           </v-row>
         </v-card>
@@ -47,6 +54,7 @@
 </template>
 
 <script>
+ 
 export default {
   data() {
     return {

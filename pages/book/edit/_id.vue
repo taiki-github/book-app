@@ -53,7 +53,6 @@ export default {
   methods:{
    updateBookInfo(){
           this.$emit("update-book-info")
-          console.log("aaa")
    }
   }
 }

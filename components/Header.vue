@@ -42,6 +42,11 @@ export default {
           to: '/book',
         },
         {
+          icon: 'mdi-apps',
+          title: '感想文',
+          to: '/report',
+        },
+        {
           icon: 'mdi-magnify',
           title: '検索',
           to: '/book/search',

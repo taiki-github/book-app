@@ -36,15 +36,25 @@ export default {
     return {
       drawer: false,
       items: [
-        {
-          icon: 'mdi-apps',
-          title: 'マイリスト',
+       {
+          icon: 'mdi-home',
+          title: 'ホーム',
           to: '/book',
         },
         {
-          icon: 'mdi-apps',
-          title: '感想文',
+          icon: 'mdi-pencil',
+          title: '作成',
           to: '/report',
+        },
+        {
+          icon: 'mdi-apps',
+          title: '投稿',
+          to: '/book',
+        },
+        {
+          icon: 'mdi-folder',
+          title: '本',
+          to: '/book',
         },
         {
           icon: 'mdi-magnify',
@@ -52,8 +62,13 @@ export default {
           to: '/book/search',
         },
         {
+          icon: 'mdi-magnify',
+          title: '提案',
+          to: '/book/search',
+        },
+        {
           icon: 'mdi-account',
-          title: 'ログアウト',
+          title: 'アカウント',
           to: '/account',
         },
       ],

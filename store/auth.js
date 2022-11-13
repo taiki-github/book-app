@@ -34,5 +34,10 @@ export const actions = {
                 commit('setLoginState', false)
                 this.$router.push('/auth/login')
     },
+    addUserInfo({commit},payload){
+        commit('setLoginState', true )
+        commit('setUserUid', payload.uid)
+        commit('setEmail',payload.email)
+    }
 }
 

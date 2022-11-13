@@ -146,6 +146,15 @@ export default {
         }
       }
     },
+    makeReport(index){
+      this.$router.push({
+        path: `../report` ,
+        query: {
+          title: this.searchResults[index].title,
+          description:this.searchResults[index].description
+        },
+      });
+    }
   },
 }
 </script>

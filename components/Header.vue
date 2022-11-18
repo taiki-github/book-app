@@ -39,7 +39,7 @@ export default {
        {
           icon: 'mdi-home',
           title: 'ホーム',
-          to: '/book',
+          to: '/home',
         },
         {
           icon: 'mdi-pencil',
@@ -49,11 +49,11 @@ export default {
         {
           icon: 'mdi-apps',
           title: '投稿',
-          to: '/book',
+          to: '/post',
         },
         {
           icon: 'mdi-folder',
-          title: '本',
+          title: '本棚',
           to: '/book',
         },
         {
@@ -62,9 +62,9 @@ export default {
           to: '/book/search',
         },
         {
-          icon: 'mdi-magnify',
+          icon: 'mdi-email',
           title: '提案',
-          to: '/book/search',
+          to: '/proposal',
         },
         {
           icon: 'mdi-account',

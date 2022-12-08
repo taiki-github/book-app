@@ -3,17 +3,38 @@ import {
     signInWithEmailAndPassword,
     signOut
 } from 'firebase/auth'
+import {
+    getFirestore,
+    doc,
+    getDoc,
+  } from "firebase/firestore";
+  
 
 export const state = () => ({
     isLoggedIn: false,
     userUid: '',
-    email: ''
+    email: '',
+    userName:'未登録'
 })
 
 export const mutations = {
-    setLoginState(state, loggedIn) {
+    setLoginState(state, loggedIn,) {
         state.isLoggedIn = loggedIn
     },
+    setEmail(state,email){
+       state.email = email
+    },
+    setUserUid( state, userUid ){
+        state.userUid = userUid
+      },
+    setUserName(state,userName){
+        if(userName){
+       state.userName = userName
+        }else{
+       state.userName = "未登録"
+        }
+    }
+    
 }
 
 export const actions = {
@@ -21,9 +42,20 @@ export const actions = {
         try {
             // vuexの引数には注意する
             const auth = getAuth(this.$firebase)
+            const db = getFirestore(this.$firebase);
+           
+
             await signInWithEmailAndPassword(auth, payload.email, payload.password)
-            commit('setLoginState', true)
-            this.$router.push('/book')
+            .then(userCredential=>{
+                commit('setLoginState', true )
+            commit('setEmail',payload.email)
+            commit('setUserUid', userCredential.user.uid)
+        })
+        const Name =  await getDoc(doc(db, "userName", payload.email));
+        const userName=Name.data().name;
+        commit('setUserName',userName)
+        this.$router.push('/home')
+            
         } catch (e) {
             alert(e.message)
         }
@@ -32,12 +64,23 @@ export const actions = {
         const auth = getAuth(this.$firebase)
         await signOut(auth)
                 commit('setLoginState', false)
+                commit('setUserUid', '')
                 this.$router.push('/auth/login')
     },
-    addUserInfo({commit},payload){
+    async addUserInfo({commit},payload){
+        const db = getFirestore(this.$firebase);
+        const Name =  await getDoc(doc(db, "userName", payload.email));
+        const userName=Name.data().name;
         commit('setLoginState', true )
         commit('setUserUid', payload.uid)
         commit('setEmail',payload.email)
+        commit('setUserName',userName)
+        
     }
 }
+export const getters = {
+    getLoggedIn: state => !!state.isLoggedIn,
+    getUserUid: state => state.userUid,
+    getEmail: state => state.email
+  }
 

@@ -12,6 +12,11 @@ export default {
     titleTemplate: '%s - book-app',
     title: 'book-app',
     
+    script: [
+      {
+        src: 'https://sdk.form.run/js/v2/formrun.js'
+      }
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

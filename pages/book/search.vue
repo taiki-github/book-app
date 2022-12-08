@@ -1,19 +1,12 @@
 <template>
   <div>
     
-      <v-col cols="6">
         <v-text-field v-model="keyword" label="タイトルで探す" />
         <v-btn  @click="search(keyword)"> 検索 </v-btn>
-      </v-col>
-      <v-col cols="6">
-        <v-text-field v-model="authorname" label="作者で探す" />
-          <v-btn  @click="searchAuthor(authorname)"> 検索 </v-btn>
-      </v-col>
-  
-
+        <v-text-field v-model="authorname" label="作者で探す" class="mt-5" />
+        <v-btn  @click="searchAuthor(authorname)"> 検索 </v-btn>
     <div v-show="!isFound">検索結果がありません:{{this.keyword}}
       <br>別のキーワードを試してみてください
-
     </div>
     <v-row>
       <v-col
@@ -33,13 +26,6 @@
               <v-card-text>{{book.authors}}</v-card-text>
               <v-card-text>{{ book.description }}</v-card-text>
               <v-btn 
-              fab dark color="indigo"
-              @click="addBookList(index)"
-              >
-
-                <v-icon dark> mdi-plus </v-icon>
-              </v-btn>
-             <v-btn 
               @click="makeReport(index)"
               class="ml-3"
               >
@@ -65,9 +51,7 @@ export default {
     }
   },
   methods: {
-      addBookList(index){
-          this.$emit("add-book-list",this.searchResults[index])
-      },
+      
     async search(keyword) {
       if (keyword) {
         try{
@@ -89,15 +73,15 @@ export default {
         console.log(response.items)
         // fetchはhtppリクエスト的なことが出きる
         for (const book of response.items) {
-          const title = book.volumeInfo.title
-          const authors = book.volumeInfo.authors
-          const image = book.volumeInfo.imageLinks // eslint-disable-line
-          const description = book.volumeInfo.description
+          // const title = book.volumeInfo.title
+          // const authors = book.volumeInfo.authors
+          // const image = book.volumeInfo.imageLinks 
+          // const description = book.volumeInfo.description
           this.searchResults.push({
-            title: title ? title : '', // eslint-disable-line
-            authors:authors?authors:"",// eslint-disable-line
-            image: image ? image.thumbnail : '',
-            description: description ? description.slice(0, 100) : '',
+            title: book.volumeInfo.title, 
+            authors:book.volumeInfo.authors,
+            image: book.volumeInfo.imageLinks.smallThumbnail,
+            description: book.volumeInfo.description
           })
         }
         }catch{
@@ -127,18 +111,16 @@ export default {
         const response = await fetch(baseUrl + queryParams).then((response) =>
           response.json()
         )
-        console.log(response.items)
-        // fetchはhtppリクエスト的なことが出きる
          for (const book of response.items) {
-          const title = book.volumeInfo.title
-          const authors = book.volumeInfo.authors
-          const image = book.volumeInfo.imageLinks // eslint-disable-line
-          const description = book.volumeInfo.description
+          // const title = book.volumeInfo.title
+          // const authors = book.volumeInfo.authors
+          // const image = book.volumeInfo.imageLinks 
+          // const description = book.volumeInfo.description
           this.searchResults.push({
-            title: title ? title : '', // eslint-disable-line
-            authors:authors?authors:"",// eslint-disable-line
-            image: image ? image.thumbnail : '',
-            description: description ? description.slice(0, 100) : '',
+            title: book.volumeInfo.title, 
+            authors:book.volumeInfo.authors,
+            image: book.volumeInfo.imageLinks.smallThumbnail,
+            description: book.volumeInfo.description
           })
         }
         }catch{
@@ -151,7 +133,8 @@ export default {
         path: `../report` ,
         query: {
           title: this.searchResults[index].title,
-          description:this.searchResults[index].description
+          description:this.searchResults[index].description,
+          image:this.searchResults[index].image
         },
       });
     }

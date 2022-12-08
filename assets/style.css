@@ -1,12 +1,35 @@
-.mt-5{
-    margin-top: 5px;
-}
 
+.box {
+    margin: auto;
+    max-width: 800px;
+    height: 410px;
+    border: 2px solid #b4610d;
+    background-color: #ffffff;
+    overflow: scroll;
+  }
+  .vertical {
+    writing-mode: vertical-rl;
+    font-family: serif;
+    font-size: 20px;
+  }
 .backgroundcolor{
     background: linear-gradient(to bottom right, beige, white);
+    /* background: radial-gradient(circle, transparent 20%, #ffe9a7 20%, #ffe9a7 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffe9a7 20%, #ffe9a7 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#ffc107 4px, transparent 4px) 0 -2px, linear-gradient(90deg, #ffc107 4px, #ffe9a7 4px) -2px 0; */
   }
 
   .mx{
       margin-top: 50px;
       margin-left: 50px;
   }
+  @media screen and (min-width: 481px) {
+    .mobile{
+     display: none;
+    }
+    
+    }
+    
+    @media screen and (max-width: 481px) {
+      .pc{
+       display: none;
+      }
+      }

@@ -4,12 +4,19 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   
-
+  router: {
+    middleware: 'authenticated'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - book-app',
     title: 'book-app',
     
+    script: [
+      {
+        src: 'https://sdk.form.run/js/v2/formrun.js'
+      }
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

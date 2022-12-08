@@ -22,7 +22,6 @@
     </v-navigation-drawer>
       <v-app-bar fixed app>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-        <v-icon>mdi-moon-waxing-crescent</v-icon>
         <v-toolbar-title v-text="title"  />
         <v-spacer />
       </v-app-bar>
@@ -36,28 +35,39 @@ export default {
     return {
       drawer: false,
       items: [
+       {
+          icon: 'mdi-home',
+          title: 'ホーム',
+          to: '/home',
+        },
         {
-          icon: 'mdi-apps',
-          title: 'マイリスト',
-          to: '/book',
+          icon: 'mdi-pencil',
+          title: '作成',
+          to: '/report',
         },
         {
           icon: 'mdi-apps',
-          title: '感想文',
-          to: '/report',
+          title: '投稿',
+          to: '/post',
+        },
+        {
+          icon: 'mdi-folder',
+          title: '本棚',
+          to: '/memoBooks',
         },
         {
           icon: 'mdi-magnify',
           title: '検索',
           to: '/book/search',
         },
+       
         {
           icon: 'mdi-account',
-          title: 'ログアウト',
+          title: 'アカウント',
           to: '/account',
         },
       ],
-      title: 'Reading Maneger',
+      title: 'R&W',
     }
   },
   computed: {
